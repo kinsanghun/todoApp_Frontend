@@ -14,8 +14,8 @@ export const Todo = (props: { data: TodoType, setTodoList: Dispatch<React.SetSta
     const checkHandler = () => {
         setIsChecked(prev => !prev);
 
-        const URL = "http://localhost:8000/";
-        axios.put(URL + "api/todos", {
+        const URL = process.env.REACT_APP_API_BASE_URL;
+        axios.put(URL + "todos", {
             id: props.data.id,
             type: "checked",
             isChecked: isChecked
@@ -31,8 +31,8 @@ export const Todo = (props: { data: TodoType, setTodoList: Dispatch<React.SetSta
         const select = window.confirm("이 할 일을 삭제할까요?");
         if (!select) return;
         else {
-            const URL = "http://localhost:8000/";
-            axios.delete(URL + "api/todos", { data: { id: dataState.id } })
+            const URL = process.env.REACT_APP_API_BASE_URL;
+            axios.delete(URL + "todos", { data: { id: dataState.id } })
                 .then(res => {
                     props.setTodoList(prev => {
                         const newData = prev.filter(data => data.id !== props.data.id);

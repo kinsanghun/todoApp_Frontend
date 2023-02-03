@@ -18,8 +18,8 @@ export const Profile = () => {
     }, [])
 
     const logoutHandler = () => {
-        const URL = "http://localhost:8000/";
-        axios.post(URL + "api/auth/logout/")
+        const URL = process.env.REACT_APP_API_BASE_URL;
+        axios.post(URL + "auth/logout/")
         .then((res) => {
             sessionStorage.removeItem("access-token");
             sessionStorage.removeItem("user");

@@ -10,8 +10,8 @@ const UpdateModal = (props:{data:TodoType, updateFunc:Function, closeFunc:Functi
     const updateFunction = (e:FormEvent) => {
         e.preventDefault();
         if(titleRef.current && descriptionRef.current && dateRef.current) {
-            const URL = "http://localhost:8000/";
-            axios.put(URL + "api/todos", {
+            const URL = process.env.REACT_APP_API_BASE_URL;
+            axios.put(URL + "todos", {
                 id : props.data.id,
                 type : "update",
                 isChecked : props.data.isChecked,
